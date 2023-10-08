@@ -5,7 +5,8 @@ import { createContext } from 'react';
 
 const initialSetting: SettingsContextType = {
   ...defaultSettings,
-  onToggleThemeMode: () => {}
+  onToggleThemeMode: () => {},
+  themeStretch: false
 };
 
 type SettingsContextType = {
