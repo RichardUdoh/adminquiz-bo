@@ -52,11 +52,21 @@ export default function Input(theme: Theme) {
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: alpha(theme.palette.grey[500], 0.32)
+            borderColor: 'transparent'
+          },
+          '&.Mui-focused': {
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'transparent'
+            }
+          },
+          '&:hover': {
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'transparent'
+            }
           },
           '&.Mui-disabled': {
             '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.action.disabledBackground
+              borderColor: 'transparent'
             }
           }
         }

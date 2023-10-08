@@ -13,6 +13,10 @@ export default function LoadingButton(theme: Theme) {
             '& .MuiLoadingButton-endIconPendingEnd': {
               marginRight: 0
             }
+          },
+          '&:disabled': {
+            boxShadow: 'none',
+            backgroundColor: theme.palette.primary.main
           }
         }
       }

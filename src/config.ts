@@ -3,7 +3,6 @@ export interface SettingsType {
   themeDirection: string;
   themeColorPresets: string;
   themeLayout: string;
-  themeStretch: boolean;
 }
 
 // export const HOST_API = process.env.REACT_APP_HOST_API_KEY || '';
@@ -13,12 +12,11 @@ export const defaultSettings: SettingsType = {
   themeMode: 'light',
   themeDirection: 'ltr',
   themeColorPresets: 'default',
-  themeLayout: 'horizontal',
-  themeStretch: false
+  themeLayout: 'horizontal'
 };
 
 export const HEADER = {
-  MOBILE_HEIGHT: 64,
+  MOBILE_HEIGHT: 55,
   MAIN_DESKTOP_HEIGHT: 88,
   DASHBOARD_DESKTOP_HEIGHT: 92,
   DASHBOARD_DESKTOP_OFFSET_HEIGHT: 92 - 32
@@ -26,7 +24,7 @@ export const HEADER = {
 
 export const NAVBAR = {
   BASE_WIDTH: 260,
-  DASHBOARD_WIDTH: 550,
+  DASHBOARD_WIDTH: 300,
   DASHBOARD_WIDTH_FULL: `100%`,
   DASHBOARD_COLLAPSE_WIDTH: 88,
   //

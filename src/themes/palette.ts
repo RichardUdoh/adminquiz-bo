@@ -5,7 +5,7 @@ function createGradient(color1: string, color2: string) {
 }
 
 function createGradientHome(color1: string, color2: string) {
-  return `linear-gradient(43deg, ${color1}, ${color2})`;
+  return `linear-gradient(45deg, ${color1}, ${color2})`;
 }
 interface GradientsPaletteOptions {
   primary: string;
@@ -118,7 +118,7 @@ const GRADIENTS = {
   success: createGradient(SUCCESS.light, SUCCESS.main),
   warning: createGradient(WARNING.light, WARNING.main),
   error: createGradient(ERROR.light, ERROR.main),
-  home: createGradientHome(GREEN.darker, GREEN.main)
+  home: createGradientHome('#34E2C5', '#34B4E2')
 };
 
 const COMMON = {
@@ -152,7 +152,7 @@ const palette = {
   light: {
     ...COMMON,
     mode: 'light',
-    text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
+    text: { primary: GREY[500_80], secondary: GREY[500_56], disabled: GREY[500] },
     background: { paper: '#fff', default: '#fff', neutral: '#aaa' },
     action: { ...ACTION }
   },

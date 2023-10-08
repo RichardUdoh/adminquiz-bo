@@ -45,7 +45,7 @@ export default function Router() {
       ),
       children: [
         { path: '', element: <Navigate to={`/auth`} replace /> },
-        { path: '/auth', element: <>test1</> },
+        { path: '/auth', element: <Login /> },
         { path: 'reset-password', element: <>reset password</> }
       ]
     },
@@ -78,6 +78,7 @@ export default function Router() {
 
 // AUTH
 const LoginLayout = Loadable(lazy(() => import(`../layouts/auth/LoginLayout`)));
+const Login = Loadable(lazy(() => import(`../pages/auth/Login`)));
 
 // DASHBOARD
 const DashboardLayout = Loadable(lazy(() => import(`../layouts/dashboard/DashboardLayout`)));

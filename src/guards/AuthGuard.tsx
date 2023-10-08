@@ -4,7 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 // components
 import LoadingScreen from '../design/loader/LoadingScreen';
-// import LaginLayout from '../layouts/login';
+import Login from '../pages/auth/Login';
 
 // ----------------------------------------------------------------------
 
@@ -21,12 +21,12 @@ export default function AuthGuard({ children }: AuthGuardProps) {
     return <LoadingScreen />;
   }
 
-  if (!isAuthenticated) {
+  if (isAuthenticated) {
+    // !isAuthenticated
     if (pathname !== requestedLocation) {
       setRequestedLocation(pathname);
     }
-    // return <LaginLayout />;
-    return <>login</>;
+    return <Login />;
   }
 
   if (requestedLocation && pathname !== requestedLocation) {
