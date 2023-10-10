@@ -59,7 +59,13 @@ export default function Router() {
       ),
       children: [
         { path: '', element: <Navigate to={`/dashboard/app`} replace /> },
-        { path: 'app', element: <>dashboard vue</> }
+        { path: 'app', element: <>dashboard vue</> },
+        { path: 'quiz', element: <>Quiz</> },
+        { path: 'message', element: <>dashboard message</> },
+        { path: 'sponsors', element: <>dashboard sponsors</> },
+        { path: 'publicites', element: <>dashboard publicités</> },
+        { path: 'role-permissions', element: <>dashboard role permission</> },
+        { path: 'user', element: <>dashboard user</> }
       ]
     },
     // OTHERS ROUTES

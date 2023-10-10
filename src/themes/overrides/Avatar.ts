@@ -8,7 +8,8 @@ export default function Avatar(theme: Theme) {
       styleOverrides: {
         colorDefault: {
           color: theme.palette.text.secondary,
-          backgroundColor: theme.palette.grey[400]
+          backgroundColor: theme.palette.grey[400],
+          border: `1px solid ${theme.palette.primary.main}`
         }
       }
     },

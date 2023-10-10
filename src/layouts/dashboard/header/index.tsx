@@ -1,6 +1,7 @@
-import { AppBar, Box, Container, Toolbar, Typography, styled } from '@mui/material';
+import { AppBar, Container, Toolbar, Typography, styled } from '@mui/material';
 import { HEADER } from '../../../config';
 import { useOffSetTop } from '../../../hooks/useOffSetTop';
+import NavUser from './NavUser';
 
 type DashboardHeaderProps = {
   onOpenSidebar?: () => void;
@@ -27,7 +28,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           <Typography color={`white`} variant="h6">
             Logo
           </Typography>
-          <Box>notif</Box>
+          <NavUser />
         </Toolbar>
       </Container>
     </RootStyle>
