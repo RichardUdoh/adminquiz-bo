@@ -1,8 +1,10 @@
 import { Box, Drawer, Stack, styled, useTheme } from '@mui/material';
 import Scrollbar from '../../../components/Scrollbar';
-import { NAVBAR } from '../../../config';
+import { HEADER, NAVBAR } from '../../../config';
 import useResponsive from '../../../hooks/useResponsive';
 import useCollapseDrawer from '../../../hooks/useCollapseDrawer';
+import NavSectionVertical from './NavSectionVertical';
+import { useNavData } from '../config-navigation';
 
 const RootStyle = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
@@ -19,6 +21,7 @@ function NavbarVertical() {
   const isDesktop = useResponsive('up', 'lg');
 
   const { isCollapse, collapseClick } = useCollapseDrawer();
+  const navData = useNavData();
 
   const renderContent = (
     <Stack
@@ -38,8 +41,7 @@ function NavbarVertical() {
           }
         }}
       >
-        {/* <NavSectionVertical navConfig={getRouteApp()} /> */}
-        <>test</>
+        <NavSectionVertical navConfig={navData} />
         <Box sx={{ flexGrow: 1 }} />
       </Scrollbar>
     </Stack>
@@ -63,7 +65,8 @@ function NavbarVertical() {
           PaperProps={{
             sx: {
               width: NAVBAR.DASHBOARD_WIDTH,
-              padding: 5,
+              padding: 2.5,
+              paddingTop: 10,
               borderRightStyle: 'unset',
               background: '#fff',
               transition: () =>

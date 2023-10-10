@@ -1,17 +1,16 @@
 import { Outlet } from 'react-router-dom';
-// import { DashboardHeader, DashboardNavBar } from '../../components/dashboard';
 import { Box, styled } from '@mui/material';
 import { Suspense } from 'react';
 import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 import DashboardHeader from './header';
 import NavbarVertical from './navBar/NavbarVertical';
-import { NAVBAR } from '../../config';
+import { HEADER, NAVBAR } from '../../config';
 
 export default function DashboardLayout() {
   const { collapseClick, isCollapse } = useCollapseDrawer();
 
   const MainStyle = styled('main')({
-    paddingTop: 55,
+    paddingTop: HEADER.MOBILE_HEIGHT,
     paddingLeft: isCollapse ? NAVBAR.DASHBOARD_WIDTH : NAVBAR.DASHBOARD_COLLAPSE_WIDTH,
     width: '100%',
     background: '#F9F9F9'

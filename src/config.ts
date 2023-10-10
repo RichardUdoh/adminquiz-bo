@@ -16,7 +16,7 @@ export const defaultSettings: SettingsType = {
 };
 
 export const HEADER = {
-  MOBILE_HEIGHT: 55,
+  MOBILE_HEIGHT: 60,
   MAIN_DESKTOP_HEIGHT: 88,
   DASHBOARD_DESKTOP_HEIGHT: 92,
   DASHBOARD_DESKTOP_OFFSET_HEIGHT: 92 - 32
@@ -24,7 +24,7 @@ export const HEADER = {
 
 export const NAVBAR = {
   BASE_WIDTH: 260,
-  DASHBOARD_WIDTH: 300,
+  DASHBOARD_WIDTH: 270,
   DASHBOARD_WIDTH_FULL: `100%`,
   DASHBOARD_COLLAPSE_WIDTH: 88,
   //

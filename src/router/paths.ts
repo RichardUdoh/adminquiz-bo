@@ -25,5 +25,11 @@ export const PATH_PAGE = {
 
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
-  app: path(ROOTS_DASHBOARD, '/app')
+  app: path(ROOTS_DASHBOARD, '/app'),
+  quiz: path(ROOTS_DASHBOARD, '/quiz'),
+  message: path(ROOTS_DASHBOARD, '/message'),
+  sponsors: path(ROOTS_DASHBOARD, '/sponsors'),
+  publicites: path(ROOTS_DASHBOARD, '/publicites'),
+  role: path(ROOTS_DASHBOARD, '/role-permissions'),
+  user: path(ROOTS_DASHBOARD, '/user')
 };

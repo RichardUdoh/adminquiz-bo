@@ -1,7 +1,7 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Box, CircularProgress, Container, IconButton, Stack, Typography } from '@mui/material';
 import { Form, FormikProvider, useFormik } from 'formik';
-import FTextField from '../../components/formik/FTextField';
+import { FTextField } from '../../components/formik';
 import { useState } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { getFormValidation } from './loginFormSchema';
