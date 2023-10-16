@@ -59,13 +59,13 @@ export default function Router() {
       ),
       children: [
         { path: '', element: <Navigate to={`/dashboard/app`} replace /> },
-        { path: 'app', element: <>dashboard vue</> },
-        { path: 'quiz', element: <>Quiz</> },
-        { path: 'message', element: <>dashboard message</> },
-        { path: 'sponsors', element: <>dashboard sponsors</> },
-        { path: 'publicites', element: <>dashboard publicités</> },
-        { path: 'role-permissions', element: <>dashboard role permission</> },
-        { path: 'user', element: <>dashboard user</> }
+        { path: 'app', element: <DashboarPage /> },
+        { path: 'quiz', element: <QuizzPage /> },
+        { path: 'message', element: <MessagePage /> },
+        { path: 'sponsors', element: <SponsorsPage /> },
+        { path: 'publicites', element: <PublishPage /> },
+        { path: 'role-permissions', element: <RolePermissionPage /> },
+        { path: 'user', element: <UserPage /> }
       ]
     },
     // OTHERS ROUTES
@@ -88,3 +88,10 @@ const Login = Loadable(lazy(() => import(`../pages/auth/Login`)));
 
 // DASHBOARD
 const DashboardLayout = Loadable(lazy(() => import(`../layouts/dashboard/DashboardLayout`)));
+const DashboarPage = Loadable(lazy(() => import(`../pages/dashboard/DashboarPage`)));
+const QuizzPage = Loadable(lazy(() => import(`../pages/dashboard/QuizzPage`)));
+const MessagePage = Loadable(lazy(() => import(`../pages/dashboard/MessagePage`)));
+const SponsorsPage = Loadable(lazy(() => import(`../pages/dashboard/SponsorsPage`)));
+const PublishPage = Loadable(lazy(() => import(`../pages/dashboard/PublishPage`)));
+const RolePermissionPage = Loadable(lazy(() => import(`../pages/dashboard/RolePermissionPage`)));
+const UserPage = Loadable(lazy(() => import(`../pages/dashboard/UserPage`)));

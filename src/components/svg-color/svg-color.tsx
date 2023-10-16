@@ -20,7 +20,7 @@ const SvgColor = forwardRef<HTMLSpanElement, SvgColorProps>(({ src, sx, ...other
       bgcolor: 'currentColor',
       mask: `url(${src}) no-repeat center / contain`,
       WebkitMask: `url(${src}) no-repeat center / contain`,
-      ...sx,
+      ...sx
     }}
     {...other}
   />
