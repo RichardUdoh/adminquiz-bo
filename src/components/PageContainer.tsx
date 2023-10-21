@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Container, Link, Typography } from '@mui/material';
+import { Box, Breadcrumbs, Container, Link, Stack, Typography } from '@mui/material';
 import React from 'react';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
@@ -6,9 +6,10 @@ type PageContainerType = {
   children: React.ReactNode;
   menu?: string;
   others?: string;
+  headerButton?: React.ReactNode;
 };
 
-export default function PageContainer({ children, menu, others }: PageContainerType) {
+export default function PageContainer({ children, menu, others, headerButton }: PageContainerType) {
   const getMenu = () => {
     if (menu) {
       if (others) {
@@ -51,13 +52,19 @@ export default function PageContainer({ children, menu, others }: PageContainerT
 
   return (
     <Container>
-      <Box sx={{ my: 2.5 }}>
-        <Typography variant="h6">{menu || others ? menu || others : 'Tableau de board'}</Typography>
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+        <Box sx={{ my: 3 }}>
+          <Typography variant="h6">
+            {menu || others ? menu || others : 'Tableau de board'}
+          </Typography>
 
-        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-          {breadcrumbs}
-        </Breadcrumbs>
-      </Box>
+          <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+            {breadcrumbs}
+          </Breadcrumbs>
+        </Box>
+        {headerButton}
+      </Stack>
+
       {children}
     </Container>
   );

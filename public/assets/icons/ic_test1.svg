@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="105" height="105" viewBox="0 0 105 105">
+  <g id="Groupe_18136" data-name="Groupe 18136" transform="translate(-51 -178)">
+    <rect id="Rectangle_4" data-name="Rectangle 4" width="105" height="105" rx="52.5" transform="translate(51 178)" fill="#34b4e2"/>
+    <g id="question" transform="translate(83.034 210.034)">
+      <path id="Tracé_205" data-name="Tracé 205" d="M31.017,211.767a3.6,3.6,0,0,0,5.339,3.153v7.525H15V201.089h7.526a3.6,3.6,0,1,1,6.3,0h7.526v7.526a3.6,3.6,0,0,0-5.339,3.152Z" transform="translate(-15 -179.733)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Tracé_206" data-name="Tracé 206" d="M31.017,25.678a3.6,3.6,0,0,0,5.339,3.153v7.525H28.83a3.6,3.6,0,1,0-6.3,0H15V15H36.356v7.526a3.6,3.6,0,0,0-5.339,3.152Z" transform="translate(-15 -15)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Tracé_207" data-name="Tracé 207" d="M222.445,256v21.356H201.089v-7.525a3.6,3.6,0,1,1,0-6.3V256h7.526a3.6,3.6,0,1,0,6.3,0Z" transform="translate(-179.733 -234.644)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Tracé_208" data-name="Tracé 208" d="M345,42.063V42.04a2.792,2.792,0,0,1,2.792-2.792h0a2.792,2.792,0,0,1,2.792,2.792h0a3.4,3.4,0,0,1-1.4,2.748h0a3.4,3.4,0,0,0-1.4,2.748" transform="translate(-315.755 -37.099)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <g id="Groupe_17634" data-name="Groupe 17634" transform="translate(30.704 14.688)">
+        <g id="Groupe_17633" data-name="Groupe 17633">
+          <path id="Tracé_209" data-name="Tracé 209" d="M362.818,183.408a1.329,1.329,0,1,0-1.329-1.329,1.344,1.344,0,0,0,1.329,1.329Z" transform="translate(-361.487 -180.75)" fill="none" stroke="#fff" stroke-width="1"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
