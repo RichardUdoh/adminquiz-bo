@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+  <g id="Groupe_18205" data-name="Groupe 18205" transform="translate(-101 -594)">
+    <rect id="Rectangle_143" data-name="Rectangle 143" width="97" height="97" rx="48.5" transform="translate(101 594)" fill="#2de092"/>
+    <g id="Icon_feather-shopping-cart" data-name="Icon feather-shopping-cart" transform="translate(128.127 625.771)">
+      <path id="Tracé_213" data-name="Tracé 213" d="M15.288,31.644A1.644,1.644,0,1,1,13.644,30,1.644,1.644,0,0,1,15.288,31.644Z" transform="translate(-0.492 1.237)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Tracé_214" data-name="Tracé 214" d="M31.788,31.644A1.644,1.644,0,1,1,30.144,30,1.644,1.644,0,0,1,31.788,31.644Z" transform="translate(1.093 1.237)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Tracé_215" data-name="Tracé 215" d="M1.5,1.5H8.076l4.406,22.014a3.288,3.288,0,0,0,3.288,2.647h15.98a3.288,3.288,0,0,0,3.288-2.647L37.669,9.72H9.72" transform="translate(-1.5 -1.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>
