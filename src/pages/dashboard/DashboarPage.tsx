@@ -18,7 +18,6 @@ const AntTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} /
     minWidth: 0
   },
   fontWeight: theme.typography.fontWeightRegular,
-  //marginRight: theme.spacing(1),
   color: theme.palette.text.secondary,
   height: '10px important',
   '&:hover': {
@@ -49,9 +48,14 @@ const charts = {
 export default function DashboarPage() {
   const theme = useTheme();
   const [value, setValue] = useState('1');
+  const [valueChart, setValueChart] = useState('1');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+  };
+
+  const handleChangeChart = (event: React.SyntheticEvent, newValue: string) => {
+    setValueChart(newValue);
   };
 
   const chartOptions = useChart({
@@ -66,18 +70,18 @@ export default function DashboarPage() {
   const chartOptions1 = useChart({
     chart: {
       sparkline: {
-        enabled: true
+        enabled: false
       }
     },
-    colors: [theme.palette.secondary.main, theme.palette.info.main],
+    colors: ['#8062CF', '#EE7641', '#62D1D3'],
     labels: series.map((i) => i.label),
     stroke: {
       colors: [theme.palette.background.paper]
     },
     legend: {
-      floating: true,
-      position: 'bottom',
-      horizontalAlign: 'center'
+      floating: false,
+      position: 'right',
+      horizontalAlign: 'right'
     },
     dataLabels: {
       enabled: true,
@@ -181,13 +185,13 @@ export default function DashboarPage() {
           <Card sx={{ p: 1 }}>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography variant="body1">Stats_02</Typography>
-              <AntTabs value={value} onChange={handleChange} aria-label="lab API tabs">
+              <AntTabs value={valueChart} onChange={handleChangeChart} aria-label="lab API tabs">
                 <AntTab sx={{ px: 1 }} label="Semaine" value="1" />
                 <AntTab sx={{ px: 1 }} label="Mois" value="2" />
                 <AntTab sx={{ px: 1 }} label="Année" value="3" />
               </AntTabs>
             </Stack>
-            <TabContext value={value}>
+            <TabContext value={valueChart}>
               <TabPanel value="1">
                 <StyledChart
                   dir="ltr"
@@ -197,8 +201,24 @@ export default function DashboarPage() {
                   height={280}
                 />
               </TabPanel>
-              <TabPanel value="2">Item Two</TabPanel>
-              <TabPanel value="3">Item Three</TabPanel>
+              <TabPanel value="2">
+                <StyledChart
+                  dir="ltr"
+                  type="pie"
+                  series={chartSeries}
+                  options={chartOptions1}
+                  height={280}
+                />
+              </TabPanel>
+              <TabPanel value="3">
+                <StyledChart
+                  dir="ltr"
+                  type="pie"
+                  series={chartSeries}
+                  options={chartOptions1}
+                  height={250}
+                />
+              </TabPanel>
             </TabContext>
           </Card>
         </Grid>
@@ -208,15 +228,14 @@ export default function DashboarPage() {
 }
 
 const series = [
-  { label: 'America', value: 4344 },
-  { label: 'Asia', value: 5435 },
-  { label: 'Europe', value: 1443 },
-  { label: 'Africa', value: 4443 }
+  { label: 'Donnée1', value: 4344 },
+  { label: 'Donnée2', value: 5435 },
+  { label: 'Donnée3', value: 1443 }
 ];
 
-const CHART_HEIGHT = 400;
+const CHART_HEIGHT = 360;
 
-const LEGEND_HEIGHT = 72;
+const LEGEND_HEIGHT = 80;
 
 const StyledChart = styled(Chart)(({ theme }) => ({
   height: CHART_HEIGHT,
@@ -225,7 +244,7 @@ const StyledChart = styled(Chart)(({ theme }) => ({
   },
   '& .apexcharts-legend': {
     height: LEGEND_HEIGHT,
-    borderTop: `dashed 1px ${theme.palette.divider}`,
-    top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`
+    width: 150,
+    top: `calc(${CHART_HEIGHT - 250}px) !important`
   }
 }));
