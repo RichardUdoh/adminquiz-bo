@@ -5,32 +5,45 @@ import { FTextField } from '../../components/formik';
 import { useState } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { getFormValidation } from './loginFormSchema';
+import { dispatch } from '../../redux/store';
+import useAuth from '../../hooks/useAuth';
+import { loginAdmin } from '../../redux/thunks/loginThunk';
+
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const STYLE_ICON = { color: 'primary.main', width: 20 };
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  const { login } = useAuth();
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const formik = useFormik<{ password: string; email: string }>({
+  const formik = useFormik<{ password: string; email: string; captchaToken: string }>({
     enableReinitialize: true,
-    initialValues: { password: '', email: '' },
+    initialValues: { password: '', email: '', captchaToken: '' },
     validationSchema: getFormValidation(),
     onSubmit: async (values) => {
-      // const bodyFormData = new FormData();
-
-      // bodyFormData.set('email', values?.email);
-      // bodyFormData.set('password', values?.password);
-      // const response = await dispatch(postLogin(bodyFormData));
-      // if (response && response?.payload?.user) {
-      //   login(response?.payload?.user);
-      // }
-      console.log('values', values);
+      const bodyFormData = {
+        accountId: values?.email,
+        password: values?.password,
+        captchaToken: values?.captchaToken
+      };
+      const response: any = await dispatch(loginAdmin(bodyFormData));
+      if (response && response?.payload?.data) {
+        login(response?.payload?.data);
+      }
     }
   });
 
-  const { handleSubmit } = formik;
+  const { handleSubmit, setFieldValue } = formik;
+
+  function onChange(value: any) {
+    if (value) {
+      setFieldValue('captchaToken', value);
+    }
+  }
 
   return (
     <Stack direction={`column`} justifyContent={`center`} sx={{ minHeight: 1 }}>
@@ -84,6 +97,8 @@ export default function Login() {
               >
                 Connexion
               </LoadingButton>
+
+              <ReCAPTCHA sitekey={KEY} onChange={onChange} />
             </Form>
           </FormikProvider>
         </Box>
@@ -91,3 +106,5 @@ export default function Login() {
     </Stack>
   );
 }
+
+const KEY = '6LdXSFwlAAAAAP_TRikzGX565Ne-yONIibgibWPv' as const;

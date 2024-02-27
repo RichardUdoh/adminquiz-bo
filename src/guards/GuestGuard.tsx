@@ -14,7 +14,7 @@ type GuestGuardProps = {
 export default function GuestGuard({ children }: GuestGuardProps) {
   const { isAuthenticated } = useAuth();
 
-  if (!isAuthenticated) {
+  if (isAuthenticated) {
     //isAuthenticated est true
     return <Navigate to={PATH_DASHBOARD.root} />;
   }

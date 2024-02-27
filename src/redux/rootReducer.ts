@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
 // slices
 import testReducer from './slices/test';
+import loginReducer from './slices/login';
 // ----------------------------------------------------------------------
 
 const rootPersistConfig = {
@@ -12,6 +13,7 @@ const rootPersistConfig = {
 };
 
 const rootReducer = combineReducers({
+  login: loginReducer,
   test: testReducer
 });
 

@@ -5,8 +5,8 @@ export interface SettingsType {
   themeLayout: string;
 }
 
-// export const HOST_API = process.env.REACT_APP_HOST_API_KEY || '';
-// export const NO_DASHBOARD_API_ROOT = process.env.REACT_NO_DASHBOARD_API_ROOT_KEY || '';
+export const HOST_API_ = 'http://16.170.45.148:8001/';
+export const NO_DASHBOARD_API_ROOT_ = 'http://16.170.45.148:8001/';
 
 export const defaultSettings: SettingsType = {
   themeMode: 'light',
