@@ -1,8 +1,8 @@
 import axios from 'axios';
-// import { HOST_API, NO_DASHBOARD_API_ROOT } from '../config';
+import { HOST_API_, NO_DASHBOARD_API_ROOT_ } from '../config';
 
-export const HOST_API = '';
-export const NO_DASHBOARD_API_ROOT = '';
+export const HOST_API = HOST_API_;
+export const NO_DASHBOARD_API_ROOT = NO_DASHBOARD_API_ROOT_;
 
 const axiosInstance = axios.create({
   baseURL: HOST_API

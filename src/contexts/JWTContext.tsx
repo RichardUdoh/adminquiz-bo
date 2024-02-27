@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 // import axios from 'utils/axios';
 import { isValidToken, setSession } from '../utils/jwt';
+import axios from '../utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -54,12 +55,16 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(jwtReducer, initialState);
 
   useEffect(() => {
-    const initialize = () => {
+    const initialize = async () => {
       try {
         const accessToken = window.localStorage.getItem('token');
 
         if (accessToken && isValidToken(accessToken)) {
           setSession(accessToken);
+
+          const user = await axios.get(`admin/accounts/me`);
+
+          console.log('user', user);
 
           dispatch({
             type: 'INITIALIZE',
@@ -91,13 +96,14 @@ function AuthProvider({ children }: { children: ReactNode }) {
     initialize();
   }, []);
 
-  const login = async (response: { refresh_token: string; token: string }) => {
-    const { token } = response;
-    setSession(token);
+  const login = async (response: { data: { user: any; accessToken: string } }) => {
+    const { accessToken, user } = response.data;
+    setSession(accessToken);
+
     dispatch({
       type: 'LOGIN',
       payload: {
-        user: { name: 'kader' }
+        user
       }
     });
   };
