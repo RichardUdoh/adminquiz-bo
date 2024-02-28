@@ -17,32 +17,38 @@ export function useNavData() {
       {
         title: 'Quiz',
         path: PATH_DASHBOARD.quiz,
-        icon: ICONS.quizz
+        icon: ICONS.quizz,
+        children: []
       },
       {
         title: 'Message',
         path: PATH_DASHBOARD.message,
-        icon: ICONS.mail
+        icon: ICONS.mail,
+        children: []
       },
       {
         title: 'Sponsors',
         path: PATH_DASHBOARD.sponsors,
-        icon: ICONS.sponsors
+        icon: ICONS.sponsors,
+        children: []
       },
       {
         title: 'Publicités',
         path: PATH_DASHBOARD.publicites,
-        icon: ICONS.publicite
+        icon: ICONS.publicite,
+        children: []
       },
       {
         title: 'Rôle et permissions',
         path: PATH_DASHBOARD.role,
-        icon: ICONS.lock
+        icon: ICONS.lock,
+        children: []
       },
       {
         title: 'Utilisateurs',
         path: PATH_DASHBOARD.user,
-        icon: ICONS.user
+        icon: ICONS.user,
+        children: []
       }
     ],
     []

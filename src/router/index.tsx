@@ -60,7 +60,13 @@ export default function Router() {
       children: [
         { path: '', element: <Navigate to={`/dashboard/app`} replace /> },
         { path: 'app', element: <DashboarPage /> },
-        { path: 'quiz', element: <QuizzPage /> },
+        {
+          path: 'quiz',
+          children: [
+            { path: '', element: <QuizzPage />, index: true },
+            { path: 'gratuit', element: <GratuitPage /> }
+          ]
+        },
         { path: 'message', element: <MessagePage /> },
         { path: 'sponsors', element: <SponsorsPage /> },
         { path: 'publicites', element: <PublishPage /> },
@@ -90,6 +96,7 @@ const Login = Loadable(lazy(() => import(`../pages/auth/Login`)));
 const DashboardLayout = Loadable(lazy(() => import(`../layouts/dashboard/DashboardLayout`)));
 const DashboarPage = Loadable(lazy(() => import(`../pages/dashboard/DashboarPage`)));
 const QuizzPage = Loadable(lazy(() => import(`../pages/dashboard/QuizzPage`)));
+const GratuitPage = Loadable(lazy(() => import(`../pages/dashboard/quiz/Gratuit`)));
 const MessagePage = Loadable(lazy(() => import(`../pages/dashboard/MessagePage`)));
 const SponsorsPage = Loadable(lazy(() => import(`../pages/dashboard/SponsorsPage`)));
 const PublishPage = Loadable(lazy(() => import(`../pages/dashboard/PublishPage`)));

@@ -1,5 +1,4 @@
 import { Box, List } from '@mui/material';
-import React from 'react';
 import NavList from './nav-list';
 
 export default function NavSectionVertical({ navConfig, isCollapse = false, ...other }: any) {
