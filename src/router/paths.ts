@@ -27,6 +27,7 @@ export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   app: path(ROOTS_DASHBOARD, '/app'),
   quiz: path(ROOTS_DASHBOARD, '/quiz'),
+  quizGratuit: path(ROOTS_DASHBOARD, '/quiz/gratuit'),
   message: path(ROOTS_DASHBOARD, '/message'),
   sponsors: path(ROOTS_DASHBOARD, '/sponsors'),
   publicites: path(ROOTS_DASHBOARD, '/publicites'),
