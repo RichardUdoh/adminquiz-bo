@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="97" height="43" viewBox="0 0 97 43">
+  <g id="Groupe_18211" data-name="Groupe 18211" transform="translate(-1080.609 -838)">
+    <g id="Rectangle_139" data-name="Rectangle 139" transform="translate(1080.609 838)" fill="#fff8ea" stroke="#ffb31b" stroke-width="1">
+      <rect width="97" height="43" rx="21.5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="96" height="42" rx="21" fill="none"/>
+    </g>
+    <path id="Icon_material-edit" data-name="Icon material-edit" d="M4.5,19.5v3.948H8.448L20.09,11.8,16.143,7.857ZM23.143,8.752a1.048,1.048,0,0,0,0-1.484L20.68,4.8a1.048,1.048,0,0,0-1.484,0L17.269,6.731l3.948,3.948Z" transform="translate(1095.219 845.333)" fill="#ffb31b"/>
+    <text id="Editer" transform="translate(1126.5 864)" fill="#ffb31b" font-size="12" font-family="Poppins-Regular, Poppins" letter-spacing="-0.02em"><tspan x="0" y="0">Editer</tspan></text>
+  </g>
+</svg>

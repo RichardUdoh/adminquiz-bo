@@ -21,13 +21,13 @@ export default function AuthGuard({ children }: AuthGuardProps) {
     return <LoadingScreen />;
   }
 
-  if (!isAuthenticated) {
-    // !isAuthenticated
-    if (pathname !== requestedLocation) {
-      setRequestedLocation(pathname);
-    }
-    return <Login />;
-  }
+  // if (!isAuthenticated) {
+  //   // !isAuthenticated
+  //   if (pathname !== requestedLocation) {
+  //     setRequestedLocation(pathname);
+  //   }
+  //   return <Login />;
+  // }
 
   if (requestedLocation && pathname !== requestedLocation) {
     setRequestedLocation(null);

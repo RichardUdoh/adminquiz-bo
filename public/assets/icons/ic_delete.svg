@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+  <g id="Groupe_18230" data-name="Groupe 18230" transform="translate(-458 -670.59)">
+    <g id="Rectangle_139" data-name="Rectangle 139" transform="translate(458 670.59)" fill="rgba(255,64,27,0.1)" stroke="#db0000" stroke-width="1">
+      <rect width="44" height="44" rx="22" stroke="none"/>
+      <rect x="0.5" y="0.5" width="43" height="43" rx="21.5" fill="none"/>
+    </g>
+    <path id="Icon_awesome-trash" data-name="Icon awesome-trash" d="M13.309.986h-3.7L9.322.41A.739.739,0,0,0,8.66,0H5.139a.731.731,0,0,0-.659.41L4.19.986H.493A.493.493,0,0,0,0,1.479v.986a.493.493,0,0,0,.493.493H13.309a.493.493,0,0,0,.493-.493V1.479A.493.493,0,0,0,13.309.986Zm-11.67,13.4a1.479,1.479,0,0,0,1.476,1.386h7.572a1.479,1.479,0,0,0,1.476-1.386l.653-10.444H.986Z" transform="translate(473.1 684.703)" fill="#e71313"/>
+  </g>
+</svg>
