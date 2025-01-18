@@ -3,6 +3,7 @@ import storage from 'redux-persist/lib/storage';
 // slices
 import testReducer from './slices/test';
 import loginReducer from './slices/login';
+import sponsorReducer from './slices/sponsor';
 // ----------------------------------------------------------------------
 
 const rootPersistConfig = {
@@ -14,6 +15,7 @@ const rootPersistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
+  sponsor: sponsorReducer,
   test: testReducer
 });
 

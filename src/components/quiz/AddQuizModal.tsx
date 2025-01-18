@@ -44,27 +44,6 @@ const StyledTabs = styled(Tabs)({
   }
 });
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`quiz-tabpanel-${index}`}
-      aria-labelledby={`quiz-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box>{children}</Box>}
-    </div>
-  );
-}
-
 interface AddQuizModalProps {
   open: boolean;
   onClose: () => void;
@@ -85,15 +64,15 @@ export default function AddQuizModal({ open, onClose }: AddQuizModalProps) {
       responses: Yup.array().of(Yup.string().required('Response is required'))
     }),
     onSubmit: (values) => {
-      console.log(values);
+      // console.log('values', values);
       onClose();
     }
   });
 
   return (
-    <Dialog 
-      open={open} 
-      onClose={onClose} 
+    <Dialog
+      open={open}
+      onClose={onClose}
       maxWidth={false}
       PaperProps={{
         sx: {
@@ -140,9 +119,9 @@ export default function AddQuizModal({ open, onClose }: AddQuizModalProps) {
             <Box sx={{ flex: 1 }}>
               <Stack spacing={4}>
                 <Box>
-                  <Typography 
-                    variant="subtitle1" 
-                    gutterBottom 
+                  <Typography
+                    variant="subtitle1"
+                    gutterBottom
                     sx={{ color: '#666', fontWeight: 500, mb: 2 }}
                   >
                     Questions 01
@@ -181,34 +160,28 @@ export default function AddQuizModal({ open, onClose }: AddQuizModalProps) {
                         }}
                       />
                     }
-                    label={
-                      <Typography sx={{ color: '#666' }}>
-                        Choix multiple
-                      </Typography>
-                    }
+                    label={<Typography sx={{ color: '#666' }}>Choix multiple</Typography>}
                   />
                 </Box>
 
                 <Box>
-                  <Typography 
-                    variant="subtitle1" 
-                    gutterBottom 
+                  <Typography
+                    variant="subtitle1"
+                    gutterBottom
                     sx={{ color: '#666', fontWeight: 500, mb: 2 }}
                   >
                     Temps
                   </Typography>
-                  <Typography sx={{ color: '#666' }}>
-                    03:00
-                  </Typography>
+                  <Typography sx={{ color: '#666' }}>03:00</Typography>
                 </Box>
               </Stack>
             </Box>
 
             {/* Right side */}
             <Box sx={{ flex: 1 }}>
-              <Typography 
-                variant="subtitle1" 
-                gutterBottom 
+              <Typography
+                variant="subtitle1"
+                gutterBottom
                 sx={{ color: '#666', fontWeight: 500, mb: 2 }}
               >
                 Reponse 01
@@ -224,9 +197,7 @@ export default function AddQuizModal({ open, onClose }: AddQuizModalProps) {
                   }}
                 >
                   <Stack spacing={2}>
-                    <Typography sx={{ color: '#666' }}>
-                      Bonne réponse
-                    </Typography>
+                    <Typography sx={{ color: '#666' }}>Bonne réponse</Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <TextField
                         fullWidth
@@ -237,7 +208,7 @@ export default function AddQuizModal({ open, onClose }: AddQuizModalProps) {
                         variant="standard"
                         InputProps={{
                           disableUnderline: true,
-                          sx: { 
+                          sx: {
                             fontSize: '14px',
                             color: '#666'
                           }

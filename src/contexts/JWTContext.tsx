@@ -62,15 +62,13 @@ function AuthProvider({ children }: { children: ReactNode }) {
         if (accessToken && isValidToken(accessToken)) {
           setSession(accessToken);
 
-          const user = await axios.get(`admin/accounts/me`);
-
-          console.log('user', user);
+          const user = await axios.get(`/admin/accounts/me`);
 
           dispatch({
             type: 'INITIALIZE',
             payload: {
               isAuthenticated: true,
-              user: { name: 'kader' }
+              user: user.data.data
             }
           });
         } else {

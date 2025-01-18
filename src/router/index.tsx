@@ -69,6 +69,7 @@ export default function Router() {
         },
         { path: 'message', element: <MessagePage /> },
         { path: 'sponsors', element: <SponsorsPage /> },
+        { path: 'sponsor/create', element: <CreateNewEditSponsorPage /> },
         { path: 'publicites', element: <PublishPage /> },
         { path: 'role-permissions', element: <RolePermissionPage /> },
         { path: 'user', element: <UserPage /> }
@@ -98,7 +99,10 @@ const DashboarPage = Loadable(lazy(() => import(`../pages/dashboard/DashboarPage
 const QuizzPage = Loadable(lazy(() => import(`../pages/dashboard/QuizzPage`)));
 const GratuitPage = Loadable(lazy(() => import(`../pages/dashboard/quiz/Gratuit`)));
 const MessagePage = Loadable(lazy(() => import(`../pages/dashboard/MessagePage`)));
-const SponsorsPage = Loadable(lazy(() => import(`../pages/dashboard/SponsorsPage`)));
+const SponsorsPage = Loadable(lazy(() => import(`../pages/dashboard/sponsors/SponsorsPage`)));
+const CreateNewEditSponsorPage = Loadable(
+  lazy(() => import(`../pages/dashboard/sponsors/CreateNewEditSponsorPage`))
+);
 const PublishPage = Loadable(lazy(() => import(`../pages/dashboard/PublishPage`)));
 const RolePermissionPage = Loadable(lazy(() => import(`../pages/dashboard/RolePermissionPage`)));
 const UserPage = Loadable(lazy(() => import(`../pages/dashboard/UserPage`)));

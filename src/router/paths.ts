@@ -30,6 +30,7 @@ export const PATH_DASHBOARD = {
   quizGratuit: path(ROOTS_DASHBOARD, '/quiz/gratuit'),
   message: path(ROOTS_DASHBOARD, '/message'),
   sponsors: path(ROOTS_DASHBOARD, '/sponsors'),
+  createSponsor: path(ROOTS_DASHBOARD, '/sponsor/create'),
   publicites: path(ROOTS_DASHBOARD, '/publicites'),
   role: path(ROOTS_DASHBOARD, '/role-permissions'),
   user: path(ROOTS_DASHBOARD, '/user')
