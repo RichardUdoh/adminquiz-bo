@@ -27,11 +27,38 @@ export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   app: path(ROOTS_DASHBOARD, '/app'),
   quiz: path(ROOTS_DASHBOARD, '/quiz'),
-  quizGratuit: path(ROOTS_DASHBOARD, '/quiz/gratuit'),
-  message: path(ROOTS_DASHBOARD, '/message'),
-  sponsors: path(ROOTS_DASHBOARD, '/sponsors'),
-  createSponsor: path(ROOTS_DASHBOARD, '/sponsor/create'),
+  user: path(ROOTS_DASHBOARD, '/user'),
+
+  //Message
+  messages: path(ROOTS_DASHBOARD, '/messages'),
+  createMessage: path(ROOTS_DASHBOARD, '/messages/create'),
+  editMessage: path(ROOTS_DASHBOARD, '/messages/:id/edit'),
+
+  //role & permission
+  rolePermissions: path(ROOTS_DASHBOARD, '/role-permissions'),
+  createRolePermission: path(ROOTS_DASHBOARD, '/role-permissions/create'),
+  editRolePermission: path(ROOTS_DASHBOARD, '/role-permissions/:id/edit'),
+
+  //Publicites
   publicites: path(ROOTS_DASHBOARD, '/publicites'),
-  role: path(ROOTS_DASHBOARD, '/role-permissions'),
-  user: path(ROOTS_DASHBOARD, '/user')
+  createPublicite: path(ROOTS_DASHBOARD, '/publicites/create'),
+  editPublicite: path(ROOTS_DASHBOARD, '/publicites/:id/edit'),
+
+  //Sponsor
+  sponsors: path(ROOTS_DASHBOARD, '/sponsors'),
+  createSponsor: path(ROOTS_DASHBOARD, '/sponsors/create'),
+  editSponsor: path(ROOTS_DASHBOARD, '/sponsors/:id/edit'),
+
+  //User
+  users: path(ROOTS_DASHBOARD, '/users'),
+  createUser: path(ROOTS_DASHBOARD, '/users/create'),
+  editUser: path(ROOTS_DASHBOARD, '/users/:id/edit'),
+
+  usagers: path(ROOTS_DASHBOARD, '/usagers'),
+
+
+  //Quizz
+  quizGratuit: path(ROOTS_DASHBOARD, '/quiz/gratuit'),
+  quizPayant: path(ROOTS_DASHBOARD, '/quiz/payant'),
+  
 };

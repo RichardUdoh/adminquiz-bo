@@ -23,12 +23,27 @@ export const createSponsorAdmin = createAsyncThunk(
   }
 );
 
+export const updateSponsorAdmin = createAsyncThunk(
+  'update/sponsors',
+  async ({ id, dataForm }: { id: number | string; dataForm: any }, { rejectWithValue, dispatch }) => {
+    dispatch(sponsorSlice.actions.startLoading());
+    try {
+      const response = await axios.put(`admin/sponsors/${id}`, dataForm);
+      dispatch(sponsorSlice.actions.closeLoading());
+      return response.data;
+    } catch (error: any) {
+      toast.error(`${isArray(error?.errors) ? error?.errors[0] : error?.errors}`);
+      dispatch(sponsorSlice.actions.closeLoading());
+    }
+  }
+);
+
 export const filesSponsorsLogo = createAsyncThunk(
-  'file/file-sponsor',
+  'file/file-ads',
   async (dataForm: any, { rejectWithValue }) => {
     dispatch(sponsorSlice.actions.startLoading());
     try {
-      const response = await axios.post(`files/sponsors/logo`, dataForm);
+      const response = await axios.post(`files/ads/image`, dataForm);
       dispatch(sponsorSlice.actions.closeLoading());
       return response;
     } catch (error: any) {
@@ -51,6 +66,19 @@ export const getSponsors = createAsyncThunk('get/sponsors', async () => {
     dispatch(sponsorSlice.actions.startLoading());
   }
 });
+
+export const getSponsor = createAsyncThunk(
+  'sponsor/id',
+  async (id: number | string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`admin/sponsors/${id}`);
+      return response.data;
+    } catch (error: any) {
+      toast.error(`${isArray(error?.errors) ? error?.errors[0] : error?.errors}`);
+    }
+  }
+);
+
 
 export const putStatusDisabledSponsors = createAsyncThunk(
   'disabled/id',

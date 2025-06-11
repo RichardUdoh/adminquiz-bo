@@ -14,6 +14,15 @@ type JWTContextType = {
   logout: () => Promise<void>;
 };
 
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  profilePictureUrl?: string;
+  token: string;
+}
+
 const initialState = {
   isAuthenticated: false,
   isInitialized: false,

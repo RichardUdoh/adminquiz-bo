@@ -3,9 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // ----------------------------------------------------------------------
 
-const initialState: { isLoading: boolean; error: any } = {
+const initialState: { isLoading: boolean; error: any; user?: any; token?: string | null } = {
   isLoading: false,
-  error: null
+  error: null,
+  user: null,
+  token: null,
 };
 
 export const loginSlice = createSlice({
@@ -26,9 +28,18 @@ export const loginSlice = createSlice({
     hasError(state, action) {
       state.isLoading = false;
       state.error = action.payload;
-    }
+    },
+    setUser(state, action) {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+    },
+    logout(state) {
+      console.log(state)
+      state.user = null;
+      state.token = null;
+      
+    },
   }
 });
-
-// Reducer
+export const { setUser, logout } = loginSlice.actions;
 export default loginSlice.reducer;

@@ -22,8 +22,14 @@ export function useNavData() {
       },
       {
         title: 'Message',
-        path: PATH_DASHBOARD.message,
+        path: PATH_DASHBOARD.messages,
         icon: ICONS.mail,
+        children: []
+      },
+            {
+        title: 'Usagers',
+        path: PATH_DASHBOARD.usagers,
+        icon: ICONS.user,
         children: []
       },
       {
@@ -40,13 +46,13 @@ export function useNavData() {
       },
       {
         title: 'Rôle et permissions',
-        path: PATH_DASHBOARD.role,
+        path: PATH_DASHBOARD.rolePermissions,
         icon: ICONS.lock,
         children: []
       },
       {
         title: 'Utilisateurs',
-        path: PATH_DASHBOARD.user,
+        path: PATH_DASHBOARD.users,
         icon: ICONS.user,
         children: []
       }

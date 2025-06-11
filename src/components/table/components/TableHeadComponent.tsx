@@ -1,24 +1,34 @@
+import * as React from 'react';
 import {
-  Box,
-  Checkbox,
-  TableCell,
   TableHead,
   TableRow,
+  TableCell,
   TableSortLabel,
-  styled,
+  Checkbox,
+  Box,
   tableCellClasses
 } from '@mui/material';
-import React from 'react';
 import { visuallyHidden } from '@mui/utils';
+import styled from '@emotion/styled';
 
-interface Data {
+// Types utilisés
+interface Data<T = any> {
   id: number;
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
+  label: string;
+  startDate?: string;
+  endDate?: string;
+  status?: string;
+  redirectionLink?: string;
+  image?: string;
+  description?: string;
+  createdDate?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  role?: string;
 }
+
+type Order = 'asc' | 'desc';
 
 interface HeadCell {
   disablePadding: boolean;
@@ -27,22 +37,21 @@ interface HeadCell {
   numeric: boolean;
 }
 
-type Order = 'asc' | 'desc';
-
 interface TableHeadComponentProps {
   numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
-  orderBy: string;
+  orderBy: keyof Data;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: ColumnKey) => void;
   rowCount: number;
   headCells: readonly HeadCell[];
 }
 
+// 🎨 Styled cell avec tes couleurs
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#34B4E2',
-    color: theme.palette.common.white
+    color: '#fff'
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14
@@ -50,8 +59,16 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 export default function TableHeadComponent(props: TableHeadComponentProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells } =
-    props;
+  const {
+    onSelectAllClick,
+    order,
+    orderBy,
+    numSelected,
+    rowCount,
+    onRequestSort,
+    headCells
+  } = props;
+
   const createSortHandler = (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -59,36 +76,39 @@ export default function TableHeadComponent(props: TableHeadComponentProps) {
   return (
     <TableHead>
       <TableRow>
-        <StyledTableCell padding="checkbox">
+        {/* <StyledTableCell  padding="checkbox" sx={{ 'padding': '16px', }}>
           <Checkbox
             sx={{ color: 'white' }}
             color="secondary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts'
-            }}
+            inputProps={{ 'aria-label': 'select all rows' }}
           />
-        </StyledTableCell>
-        {headCells.map((headCell) => (
-          <StyledTableCell
+        </StyledTableCell > */}
+        {headCells.map((headCell, index) => (
+          <StyledTableCell 
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
+              sx={{
+                ...(index === 0 && { '&:first-of-type': { boxShadow: 'none' } }), // style pour le premier
+                ...(index === headCells.length - 1 && { '&:last-of-type': { boxShadow: 'none' } }) // style pour le dernier
+              }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
+              sx={{ color: 'white', '&.Mui-active': { color: 'white' } }}
             >
               {headCell.label}
-              {orderBy === headCell.id ? (
+              {orderBy === headCell.id && (
                 <Box component="span" sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </Box>
-              ) : null}
+              )}
             </TableSortLabel>
           </StyledTableCell>
         ))}

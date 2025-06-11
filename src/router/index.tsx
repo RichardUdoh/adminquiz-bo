@@ -4,6 +4,13 @@ import GuestGuard from '../guards/GuestGuard';
 
 import AuthGuard from '../guards/AuthGuard';
 import LoadingScreen from '../design/loader/LoadingScreen';
+import RolePermissionsPage from '../pages/dashboard/role_permissions/RolePermissionsPage';
+import CreateNewEditRolePermissionPage from '../pages/dashboard/role_permissions/CreateNewEditRolePermissionPage';
+import UsersPage from '../pages/dashboard/users/UsersPage';
+import CreateNewEditUserPage from '../pages/dashboard/users/CreateNewEditUserPage';
+import UsagersPage from '../pages/dashboard/usagers/UsagersPage';
+import QuizzesGratuitPage from '../pages/dashboard/quiz/QuizzesGratuitPage';
+import QuizzesPayantPage from '../pages/dashboard/quiz/QuizzesPayantPage';
 
 const Loadable = (Component: React.ElementType) => (props: any) => {
   const { pathname } = useLocation();
@@ -64,15 +71,40 @@ export default function Router() {
           path: 'quiz',
           children: [
             { path: '', element: <QuizzPage />, index: true },
-            { path: 'gratuit', element: <GratuitPage /> }
+            { path: 'gratuit', element: <QuizzesGratuitPage /> },
+            { path: 'payant', element: <QuizzesPayantPage /> }
           ]
         },
-        { path: 'message', element: <MessagePage /> },
+
+
+
+        //Messages
+        { path: 'messages', element: <MessagesPage /> },
+        { path: 'messages/create', element: <CreateNewEditMessagesPage /> },
+        { path: 'messages/:id/edit', element: <CreateNewEditMessagesPage /> },
+
+        //Sponsor
         { path: 'sponsors', element: <SponsorsPage /> },
-        { path: 'sponsor/create', element: <CreateNewEditSponsorPage /> },
-        { path: 'publicites', element: <PublishPage /> },
-        { path: 'role-permissions', element: <RolePermissionPage /> },
-        { path: 'user', element: <UserPage /> }
+        { path: 'sponsors/create', element: <CreateNewEditSponsorPage /> },
+        { path: 'sponsors/:id/edit', element: <CreateNewEditSponsorPage /> },
+        
+        //Publicites
+        { path: 'publicites', element: <PublicitesPage /> },
+        { path: 'publicites/create', element: <CreateNewEditPublicitePage /> },
+        { path: 'publicites/:id/edit', element: <CreateNewEditPublicitePage /> },
+
+        //RolePermission
+        { path: 'role-permissions', element: <RolePermissionsPage /> },
+        { path: 'role-permissions/create', element: <CreateNewEditRolePermissionPage /> },
+        { path: 'role-permissions/:id/edit', element: <CreateNewEditRolePermissionPage /> },
+
+        //Usagers
+        { path: 'usagers', element: <UsagersPage /> },
+
+        //User
+        { path: 'users', element: <UsersPage /> },
+        { path: 'users/create', element: <CreateNewEditUserPage /> },
+        { path: 'users/:id/edit', element: <CreateNewEditUserPage /> },
       ]
     },
     // OTHERS ROUTES
@@ -96,13 +128,19 @@ const Login = Loadable(lazy(() => import(`../pages/auth/Login`)));
 // DASHBOARD
 const DashboardLayout = Loadable(lazy(() => import(`../layouts/dashboard/DashboardLayout`)));
 const DashboarPage = Loadable(lazy(() => import(`../pages/dashboard/DashboarPage`)));
-const QuizzPage = Loadable(lazy(() => import(`../pages/dashboard/QuizzPage`)));
+const QuizzPage = Loadable(lazy(() => import(`../pages/dashboard/quiz/QuizzPage`)));
 const GratuitPage = Loadable(lazy(() => import(`../pages/dashboard/quiz/Gratuit`)));
-const MessagePage = Loadable(lazy(() => import(`../pages/dashboard/MessagePage`)));
 const SponsorsPage = Loadable(lazy(() => import(`../pages/dashboard/sponsors/SponsorsPage`)));
+const MessagesPage = Loadable(lazy(() => import(`../pages/dashboard/messages/MessagesPage`)));
+const PublicitesPage = Loadable(lazy(() => import(`../pages/dashboard/publicites/PublicitesPage`)));
+const CreateNewEditMessagesPage = Loadable(
+  lazy(() => import(`../pages/dashboard/messages/CreateNewEditMessagesPage`))
+);
+const CreateNewEditPublicitePage = Loadable(
+  lazy(() => import(`../pages/dashboard/publicites/CreateNewEditPublicitesPage`))
+);
 const CreateNewEditSponsorPage = Loadable(
   lazy(() => import(`../pages/dashboard/sponsors/CreateNewEditSponsorPage`))
 );
-const PublishPage = Loadable(lazy(() => import(`../pages/dashboard/PublishPage`)));
 const RolePermissionPage = Loadable(lazy(() => import(`../pages/dashboard/RolePermissionPage`)));
 const UserPage = Loadable(lazy(() => import(`../pages/dashboard/UserPage`)));

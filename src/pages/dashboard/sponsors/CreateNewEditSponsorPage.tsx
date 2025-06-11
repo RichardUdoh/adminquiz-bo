@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageContainer from '../../../components/PageContainer';
-import { Button, Card, InputAdornment, TextField, Typography } from '@mui/material';
-import { Box, Stack } from '@mui/material';
+import {
+  Button,
+  Card,
+  InputAdornment,
+  TextField,
+  Typography,
+  Box,
+  Stack
+} from '@mui/material';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { FTextField } from '../../../components/formik';
 import * as Yup from 'yup';
 import { LoadingButton } from '@mui/lab';
-import { createSponsorAdmin, filesSponsorsLogo } from '../../../redux/thunks/sponsorThunk';
+import {
+  createSponsorAdmin,
+  filesSponsorsLogo,
+  getSponsor,
+  updateSponsorAdmin,
+  // updateSponsorAdmin
+} from '../../../redux/thunks/sponsorThunk';
 import { dispatch } from '../../../redux/store';
 import { useRouter } from '../../../hooks/use-router';
 import { PATH_DASHBOARD } from '../../../router/paths';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useParams } from 'react-router-dom';
 
 const FormSchema = Yup.object().shape({
   label: Yup.string().required(`Le champ est obligatoire.`),
@@ -23,43 +37,66 @@ const FormSchema = Yup.object().shape({
 
 export default function CreateNewEditSponsorPage() {
   const router = useRouter();
+  const { id } = useParams();
   const [fileName, setFileName] = useState<string | null>(null);
 
-  const formik = useFormik<{
-    label: string;
-    image: File | null;
-    description: string;
-    startDate: string;
-    endDate: string;
-    redirectionLink: string;
-  }>({
+  const [initialValues, setInitialValues] = useState({
+    label: '',
+    image: null,
+    description: '',
+    startDate: '',
+    endDate: '',
+    redirectionLink: ''
+  });
+
+  useEffect(() => {
+    const fetchSponsor = async () => {
+      if (id) {
+        const response = await dispatch(getSponsor(id));
+        const sponsor = response?.payload?.data;
+
+        if (sponsor) {
+          setInitialValues({
+            label: sponsor.label || '',
+            image: null,
+            description: sponsor.description || '',
+            startDate: sponsor.startDate?.slice(0, 10) || '',
+            endDate: sponsor.endDate?.slice(0, 10) || '',
+            redirectionLink: sponsor.redirectionLink || ''
+          });
+
+          setFileName(sponsor.image?.split('/').pop() || null);
+        }
+      }
+    };
+
+    fetchSponsor();
+  }, [id]);
+
+  const formik = useFormik({
     enableReinitialize: true,
-    initialValues: {
-      label: '',
-      image: null,
-      description: '',
-      startDate: '',
-      endDate: '',
-      redirectionLink: ''
-    },
+    initialValues,
     validationSchema: FormSchema,
     onSubmit: async (values) => {
       try {
-        const formDataFile = new FormData();
-        if (values.image) formDataFile.append('file', values.image);
-        const response: any = await dispatch(filesSponsorsLogo(formDataFile));
-
-        if (response?.payload?.data?.url) {
-          const dataForm = {
-            ...values,
-            image: response?.payload?.data?.url
-          };
-
-          await dispatch(createSponsorAdmin(dataForm));
-          router.push(PATH_DASHBOARD.sponsors);
+        if (values.image) {
+          const formDataFile = new FormData();
+          formDataFile.append('file', values.image);
+          const response: any = await dispatch(filesSponsorsLogo(formDataFile));
+          if (response?.payload?.data?.url) {
+            values.image = response.payload.data.url;
+          }
         }
+
+        if (id) {
+          await dispatch(updateSponsorAdmin({ id, dataForm: values }));
+        } else {
+          await dispatch(createSponsorAdmin(values));
+        }
+
+        router.push(PATH_DASHBOARD.sponsors);
       } catch (error) {
-        // console.error('Erreur lors de la soumission', error);
+        // Gérer l'erreur ici
       }
     }
   });
@@ -73,31 +110,29 @@ export default function CreateNewEditSponsorPage() {
   };
 
   return (
-    <PageContainer menu="Ajouter un sponsor">
+    <PageContainer menu={id ? "Modifier un sponsor" : "Ajouter un sponsor"}>
       <Card sx={{ p: 2 }}>
         <Box sx={{ margin: 'auto', width: { xs: '100%', md: '64%' }, pt: 2 }}>
           <FormikProvider value={formik}>
             <Form autoComplete="off" onSubmit={handleSubmit}>
               <FTextField name="label" label="Libellé" placeholder="libellé" />
+
               <Box
                 rowGap={2}
                 columnGap={2}
                 display="grid"
-                gridTemplateColumns={{
-                  xs: 'repeat(2, 1fr)',
-                  sm: 'repeat(2, 1fr)'
-                }}
+                gridTemplateColumns={{ xs: 'repeat(2, 1fr)', sm: 'repeat(2, 1fr)' }}
               >
                 <FTextField name="startDate" type="date" label="Date début" />
                 <FTextField name="endDate" type="date" label="Date fin" />
+
                 <Stack spacing={1} my={1.5}>
                   <Typography m={0.5} variant="body2">
                     Image
                   </Typography>
                   <TextField
                     fullWidth
-                    // label="Image"
-                    placeholder="c//"
+                    placeholder="Choisir un fichier"
                     value={fileName || ''}
                     InputProps={{
                       readOnly: true,
@@ -127,24 +162,14 @@ export default function CreateNewEditSponsorPage() {
                   placeholder="https://"
                 />
               </Box>
+
               <FTextField name="description" multiline rows={6} label="Description" />
 
               <Stack my={4} direction="row" justifyContent="center" spacing={2} alignItems="center">
-                <Button
-                  onClick={() => router.back()}
-                  size="large"
-                  color="inherit"
-                  variant="contained"
-                >
+                <Button onClick={() => router.back()} size="large" color="inherit" variant="contained">
                   Annuler
                 </Button>
-                <LoadingButton
-                  loading={isSubmitting}
-                  variant="contained"
-                  type="submit"
-                  size="large"
-                  color="primary"
-                >
+                <LoadingButton loading={isSubmitting} variant="contained" type="submit" size="large" color="primary">
                   Enregistrer
                 </LoadingButton>
               </Stack>

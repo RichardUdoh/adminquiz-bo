@@ -1,6 +1,6 @@
-import PageContainer from '../../components/PageContainer';
+import PageContainer from '../../../components/PageContainer';
 import { Avatar, Card, Grid, Stack, Typography } from '@mui/material';
-import { PATH_DASHBOARD } from '../../router/paths';
+import { PATH_DASHBOARD } from '../../../router/paths';
 import { useNavigate } from 'react-router-dom';
 
 export default function QuizzPage() {
@@ -15,7 +15,7 @@ export default function QuizzPage() {
     {
       label: 'Payants',
       icons: '/assets/icons/ic_paid.svg',
-      onNavigate: () => nagigate(PATH_DASHBOARD.quizGratuit)
+      onNavigate: () => nagigate(PATH_DASHBOARD.quizPayant)
     },
     {
       label: 'Quiz précommandé',
@@ -28,8 +28,8 @@ export default function QuizzPage() {
     <PageContainer menu="Quiz">
       <Grid container spacing={2}>
         {DATA_WIDGETS.map((item: any) => (
-          <Grid key={item.label} item md={4}>
-            <Card sx={{ p: 2.5, cursor: 'pointer' }} onClick={() => item.onNavigate()}>
+          <Grid key={item.label} item md={4} onClick={() => item.onNavigate()}>
+            <Card sx={{ p: 2.5, cursor: 'pointer' }} >
               <Stack direction={'row'} justifyContent={'left'} spacing={2} alignItems={'center'}>
                 <Avatar src={item.icons} alt={item.label} sx={{ width: 80, height: 80 }} />
                 <Typography variant="body2">{item.label}</Typography>

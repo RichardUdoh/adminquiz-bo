@@ -64,7 +64,7 @@ export default function GratuitPage() {
       <Grid container spacing={3} justifyContent="center">
         {questions.map((question) => (
           <Grid key={question.id} item xs={12} sm={6} md={4}>
-            <QuestionCard {...question} />
+            {/* <QuestionCard {...question} /> */}
           </Grid>
         ))}
       </Grid>

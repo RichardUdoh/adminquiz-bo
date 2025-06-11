@@ -5,8 +5,10 @@ export interface SettingsType {
   themeLayout: string;
 }
 
-export const HOST_API_ = 'https://api.brainsquiz.com/';
-export const NO_DASHBOARD_API_ROOT_ = 'https://api.brainsquiz.com/';
+export const HOST_API_ = 'http://localhost:3000';
+export const NO_DASHBOARD_API_ROOT_ = 'http://localhost:3000';
+// export const NO_DASHBOARD_API_ROOT_ = 'https://api.brainsquiz.com/';
+// export const HOST_API_ = 'https://api.brainsquiz.com/';
 
 export const defaultSettings: SettingsType = {
   themeMode: 'light',

@@ -10,6 +10,9 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from '@mui/icons-material/Edit';
+import { useEffect, useState } from 'react';
+import { dispatch } from '../../redux/store';
+import { getQuestion } from '../../redux/thunks/questionThunk';
 
 const QuestionBox = styled(Box)(({ theme }) => ({
   backgroundColor: '#67B7DC',
@@ -49,24 +52,40 @@ const ResponseBox = styled(Box)(({ theme }) => ({
 interface DetailsModalProps {
   open: boolean;
   onClose: () => void;
+  questionId: string | number;
+    index: number;
 }
 
-interface Response {
+interface Question {
   id: number;
-  text: string;
-  isCorrect: boolean;
+  content: string;
+  type: string;
+  mediaSupport: string;
+  answers: Response[];
 }
 
-export default function DetailsModal({ open, onClose }: DetailsModalProps) {
-  // Mock data - replace with actual data from your application
-  const questionData = {
-    question: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna",
-    responses: [
-      { id: 1, text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod", isCorrect: false },
-      { id: 2, text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod", isCorrect: true },
-      { id: 3, text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod", isCorrect: false }
-    ]
-  };
+
+export default function DetailsModal({ open, onClose, questionId,index }: DetailsModalProps) {
+  const [loading, setLoading] = useState(false);
+  const [questionData, setQuestionData] = useState<Question | null>(null);
+  
+  useEffect(() => {
+    if (open && questionId) {
+      const fetchQuestion = async () => {
+        setLoading(true);
+        try {
+          const response = await dispatch(getQuestion(questionId)).unwrap();
+          setQuestionData(response.data);
+        } catch (error) {
+          console.error('Erreur de récupération :', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchQuestion();
+    }
+  }, [open, questionId]);
 
   const handleEdit = (type: 'question' | 'response', id?: number) => {
     console.log(`Editing ${type}${id ? ` with id ${id}` : ''}`);
@@ -90,7 +109,7 @@ export default function DetailsModal({ open, onClose }: DetailsModalProps) {
       }}
     >
       <DialogTitle sx={{ p: '24px 32px 16px' }}>
-        <Typography variant="h6" sx={{ color: '#666', fontWeight: 500 }}>
+        <Typography sx={{ color: '#666', fontWeight: 500 }}>
           Details
         </Typography>
         <IconButton
@@ -107,49 +126,66 @@ export default function DetailsModal({ open, onClose }: DetailsModalProps) {
         </IconButton>
       </DialogTitle>
 
-      <DialogContent sx={{ p: '0 32px 32px' }}>
-        {/* Question */}
-        <QuestionBox>
-          <Typography variant="subtitle1" gutterBottom>
-            Question 01
-          </Typography>
-          <Typography>
-            {questionData.question}
-          </Typography>
-          <IconButton 
-            className="editButton"
-            onClick={() => handleEdit('question')}
-            size="small"
-          >
-            <EditIcon />
-          </IconButton>
-        </QuestionBox>
 
-        {/* Responses */}
-        <Box>
-          {questionData.responses.map((response, index) => (
-            <Box key={response.id}>
-              <Typography 
-                variant="subtitle2" 
-                sx={{ color: '#666', mb: 1 }}
-              >
-                Réponses {String(index + 1).padStart(2, '0')}
+      <DialogContent sx={{ p: '0 32px 32px' }}>
+        {loading ? (
+          <Typography>Chargement...</Typography>
+        ) : questionData ? (
+          <>
+            {/* Question */}
+            <QuestionBox>
+              <Typography variant="subtitle1" gutterBottom>
+                Question {String(index + 1).padStart(2, '0')}
               </Typography>
-              <ResponseBox className={response.isCorrect ? 'correct' : ''}>
-                <Typography>
-                  {response.text}
-                </Typography>
-                <IconButton 
-                  className="editButton"
-                  onClick={() => handleEdit('response', response.id)}
-                  size="small"
-                >
-                  <EditIcon />
-                </IconButton>
-              </ResponseBox>
+              <Typography>
+                {questionData.content}
+              </Typography>
+
+                {questionData.type === 'IMAGE' && questionData.mediaSupport && (
+                  <img 
+                    src={questionData.mediaSupport} 
+                    alt={`Media for question ${index + 1}`} 
+                    style={{ maxWidth: '100%', maxHeight: 200, marginBottom: 8 }} 
+                  />
+                )}
+
+              <IconButton
+                className="editButton"
+                onClick={() => handleEdit('question')}
+                size="small"
+              >
+                <EditIcon />
+              </IconButton>
+            </QuestionBox>
+
+            <Box>
+              {questionData?.answers.map((response:any, index:any) => (
+                <Box key={response.id}>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ color: '#666', mb: 1 }}
+                  >
+                    Réponse {String(index + 1).padStart(2, '0')}
+                  </Typography>
+                  <ResponseBox className={response.isCorrect ? 'correct' : ''}>
+                    <Typography>
+                      {response.content}
+                    </Typography>
+                    <IconButton
+                      className="editButton"
+                      onClick={() => handleEdit('response', response.id)}
+                      size="small"
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </ResponseBox>
+                </Box>
+              ))}
             </Box>
-          ))}
-        </Box>
+          </>
+        ) : (
+          <Typography>Pas de données disponibles.</Typography>
+        )}
 
         {/* Close Button */}
         <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>

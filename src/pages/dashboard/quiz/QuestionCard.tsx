@@ -4,48 +4,69 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import DetailsModal from '../../../components/quiz/DetailsModal';
 import AddQuizModal from '../../../components/quiz/AddQuizModal';
 
-
-
 interface QuestionCardProps {
+  id: string | number;
   title: string;
   description: string;
-  mediaType?: 'audio' | 'image';
+  mediaType?: 'IMAGE' | 'AUDIO' | 'VIDEO';
+  mediaSupport?: string;
+  index: number;
 }
 
-const QuestionCard: React.FC<QuestionCardProps> = ({ title, description, mediaType }) => {
+const QuestionCard: React.FC<QuestionCardProps> = ({ id, title, description, mediaType,mediaSupport,index }) => {
   const [openDetailModal, setOpenDetailModal] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
 
-
   return (
     <Card sx={{ p: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
-      {/* Question Title */}
       <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>{title}</Typography>
-      {/* Media Content (Image or Audio) */}
-      {mediaType === 'image' && (
+
+      {mediaType === 'IMAGE' && (
         <Box
           component="img"
-          src="/assets/icons/ic_video.png" // Image path placeholder
+          src={mediaSupport}
           alt={title}
           sx={{ width: '100%', height: 140, borderRadius: 1, mb: 1 }}
         />
       )}
-      {mediaType === 'audio' && (
-        <Box sx={{ display: 'flex', alignItems: 'center', backgroundColor: 'primary.main', borderRadius: 1, p: 1, mb: 1 }}>
-          <IconButton aria-label="play" sx={{ color: 'white' }}>
-            <PlayArrowIcon />
-          </IconButton>
-          <Typography variant="body2" color="white" sx={{ ml: 1 }}>
-            1x
-          </Typography>
-          <Box sx={{ flexGrow: 1, height: 8, backgroundColor: 'white', borderRadius: 1, ml: 2 }} />
-        </Box>
-      )}
 
-      {/* Question Description */}
+     {mediaType === 'AUDIO' && (
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              backgroundColor: 'primary.main',
+              borderRadius: 1,
+              p: 1,
+              mb: 1,
+            }}
+          >
+            <audio controls style={{ width: '100%', backgroundColor: 'transparent' }}>
+              <source src={mediaSupport} type="audio/mpeg" />
+              Votre navigateur ne supporte pas l’élément audio.
+            </audio>
+          </Box>
+        )}
+
+        {mediaType === 'VIDEO' && (
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              backgroundColor: 'primary.main',
+              borderRadius: 1,
+              p: 1,
+              mb: 1,
+            }}
+          >
+            <video controls style={{ width: '100%', borderRadius: 8 }}>
+              <source src={mediaSupport} type="video/mp4" />
+              Votre navigateur ne supporte pas l’élément vidéo.
+            </video>
+          </Box>
+        )}
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>{description}</Typography>
 
-      {/* Action Buttons (Edit and Delete) */}
       <Stack direction="row" justifyContent="space-between" sx={{ mt: 'auto' }}>
         <IconButton color="error" aria-label="delete">
           <Box
@@ -55,33 +76,28 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ title, description, mediaTy
             sx={{ width: 44, height: 44 }}
           />
         </IconButton>
-        {/* Nest the last two buttons in their own Stack */}
+
         <Stack direction="row" spacing={0}>
-          <IconButton color="error" aria-label="edit">
+          <IconButton color="error" aria-label="edit" onClick={() => setOpenAddModal(true)}>
             <Box
               component="img"
               src="/assets/icons/ic_editor.svg"
               alt="edit"
               sx={{ width: 97, height: 43 }}
-              onClick={() => setOpenAddModal(true)}
             />
           </IconButton>
-          <IconButton color="error" aria-label="delete">
+          <IconButton color="error" aria-label="details" onClick={() => setOpenDetailModal(true)}>
             <Box
               component="img"
               src="/assets/icons/ic_icons.svg"
               alt="details"
               sx={{ width: 44, height: 44 }}
-              onClick={() => setOpenDetailModal(true)} 
             />
           </IconButton>
         </Stack>
       </Stack>
 
-      <DetailsModal open={openDetailModal} onClose={() => setOpenDetailModal(false)} />
-      <AddQuizModal open={openAddModal} onClose={() => setOpenAddModal(false)} />
-
-
+      <DetailsModal index={index} open={openDetailModal} onClose={() => setOpenDetailModal(false)} questionId={id} />
     </Card>
   );
 };

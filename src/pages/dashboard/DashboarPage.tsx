@@ -112,7 +112,7 @@ export default function DashboarPage() {
   return (
     <PageContainer>
       <Grid container spacing={2}>
-        <Grid item md={6} xs={6}>
+        {/* <Grid item md={6} xs={6}>
           <Card sx={{ p: 1 }}>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography variant="body1">Stats_01</Typography>
@@ -179,9 +179,9 @@ export default function DashboarPage() {
               </TabPanel>
             </TabContext>
           </Card>
-        </Grid>
+        </Grid> */}
 
-        <Grid item md={6} xs={6}>
+        {/* <Grid item md={6} xs={6}>
           <Card sx={{ p: 1 }}>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
               <Typography variant="body1">Stats_02</Typography>
@@ -221,7 +221,7 @@ export default function DashboarPage() {
               </TabPanel>
             </TabContext>
           </Card>
-        </Grid>
+        </Grid> */}
       </Grid>
     </PageContainer>
   );

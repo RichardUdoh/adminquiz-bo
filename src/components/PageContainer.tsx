@@ -1,6 +1,7 @@
 import { Box, Breadcrumbs, Container, Link, Stack, Typography } from '@mui/material';
 import React from 'react';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { PATH_DASHBOARD } from '../router/paths';
 
 type PageContainerType = {
   children: React.ReactNode;
@@ -18,15 +19,13 @@ export default function PageContainer({ children, menu, others, headerButton }: 
             underline="hover"
             key="2"
             color="inherit"
-            //href="/material-ui/getting-started/installation/"
-            //onClick={handleClick}
           >
-            <Typography component={'span'} variant="body2">
+            <Typography component={'span'} variant="body2" >
               {menu}
             </Typography>
           </Link>,
           <Typography key="3" color="text.primary">
-            <Typography component={'span'} variant="body2">
+            <Typography component={'span'} variant="body2" >
               {others}
             </Typography>
           </Typography>
@@ -34,7 +33,7 @@ export default function PageContainer({ children, menu, others, headerButton }: 
       }
       return [
         <Typography key="3" color="text.primary">
-          <Typography component={'span'} variant="body2">
+          <Typography component={'span'} variant="body2" >
             {menu}
           </Typography>
         </Typography>
@@ -44,7 +43,7 @@ export default function PageContainer({ children, menu, others, headerButton }: 
   };
 
   const breadcrumbs = [
-    <Link underline="hover" key="1" color="inherit" href="/">
+    <Link underline="hover" key="1" color="inherit" href={PATH_DASHBOARD.app}>
       <Typography variant="body2">Tableau de board </Typography>
     </Link>,
     ...getMenu()
@@ -54,7 +53,7 @@ export default function PageContainer({ children, menu, others, headerButton }: 
     <Container>
       <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <Box sx={{ my: 3 }}>
-          <Typography variant="h6">
+          <Typography variant="h6" >
             {menu || others ? menu || others : 'Tableau de board'}
           </Typography>
 
